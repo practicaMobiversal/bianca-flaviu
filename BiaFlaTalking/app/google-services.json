@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "914174443964",
+    "firebase_url": "https://biaflatalking.firebaseio.com",
+    "project_id": "biaflatalking",
+    "storage_bucket": "biaflatalking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914174443964:android:2785df36db53f28b",
+        "android_client_info": {
+          "package_name": "com.mobiversal.practica.biaflatalking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914174443964-ap2mf7behbghc2jmijcs9ote2p3cabm5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobiversal.practica.biaflatalking",
+            "certificate_hash": "4512119068b74010e3a8998bee17f286623afb56"
+          }
+        },
+        {
+          "client_id": "914174443964-egu62nimd380iq8miq541m6i8arg5dsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAABuq3AlAojkgftAKV8Mabfofk_pfZvU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914174443964-egu62nimd380iq8miq541m6i8arg5dsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
