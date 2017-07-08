@@ -10,10 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
     private static final String TAG="MainActivity";
 
     @Override
@@ -36,17 +40,28 @@ public class MainActivity extends AppCompatActivity {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("message");
 
-            myRef.setValue("Hello, World!");
+//            myRef.setValue("Hello World");
         });
 
         Intent intent = new Intent (this, SecondActivity.class);
         startActivity(intent);
+
+        mAuth = FirebaseAuth.getInstance();
     }
+
 
     @Override
     protected void onStart() {
         super.onStart();
         Log.d(TAG, "onStart()");
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+            Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
+            startActivity(startIntent);
+            finish();
+        }
     }
 
     @Override

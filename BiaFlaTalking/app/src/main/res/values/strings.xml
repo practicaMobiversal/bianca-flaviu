@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BiaFlaTalking</string>
     <string name="action_settings">Settings</string>
+    <string name="display_name">Display name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
