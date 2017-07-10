@@ -1,11 +1,13 @@
 package com.mobiversal.practica.biaflatalking;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button mCreateBtn;
     private FirebaseAuth mAuth;
     private Toolbar mToolbar;
+    private ProgressDialog mRegProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmail = (TextInputLayout) findViewById(R.id.reg_email);
         mPassword = (TextInputLayout) findViewById(R.id.reg_password);
         mCreateBtn = (Button) findViewById(R.id.reg_create_btn);
+        mRegProgress = new ProgressDialog(this);
 
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,13 +48,23 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
 
-                register_user(display_name, email, password);
+                if (!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
+                    mRegProgress.setTitle("Registering user");
+                    mRegProgress.setMessage("Please wait while we create your account");
+                    mRegProgress.setCanceledOnTouchOutside(false);
+                    mRegProgress.show();
+                    register_user(display_name, email, password);
+                }
+
+
             }
         });
         mToolbar = (Toolbar) findViewById(R.id.register_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Create account");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
 
     }
@@ -62,10 +76,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
+                    mRegProgress.dismiss();
+
                     Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(mainIntent);
                     finish();
                 } else {
+                    mRegProgress.hide();
                     Toast.makeText(RegisterActivity.this, "Error creating account", Toast.LENGTH_LONG).show();
                 }
             }
