@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.mobiversal.practica.biaflatalking.StartActivity">
 
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -13,6 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Welcome to BiaFlaChat"
+
         android:textSize="24sp" />
 
     <Button
@@ -22,5 +24,21 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="93dp"
+        android:background="@color/colorPrimary"
         android:text="Create account here" />
+
+
+
+    <Button
+        android:id="@+id/start_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:background="@color/colorPrimary"
+        android:text="Log in" />
+
+
+
 </RelativeLayout>

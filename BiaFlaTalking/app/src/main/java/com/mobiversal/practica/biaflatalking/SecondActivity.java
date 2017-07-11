@@ -8,9 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-/**
- * Created by Flaviu on 05/07/2017.
- */
+
+
 
 public class SecondActivity extends AppCompatActivity {
 
