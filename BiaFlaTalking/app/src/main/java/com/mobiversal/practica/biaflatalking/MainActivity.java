@@ -61,11 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-//            super.onCreateOptionsMenu(menu);
             getMenuInflater().inflate(R.menu.main_menu, menu);
-
-//            return true;
-            return(super.onCreateOptionsMenu(menu));
+            return true;
         }
 
     @Override
@@ -100,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
 
         if (item.getItemId() == R.id.main_logout_btn) {
             FirebaseAuth.getInstance().signOut();
@@ -108,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(startIntent);
             finish();
         }
+
+        else
+            super.onOptionsItemSelected(item);
 
         return true;
     }
