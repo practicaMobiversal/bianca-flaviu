@@ -6,30 +6,44 @@
     android:layout_height="match_parent"
     tools:context="com.mobiversal.practica.biaflatalking.MainActivity">
 
-    <include layout="@layout/app_bar_layout"/>
+    <!--<Button-->
+
+    <!--android:id="@+id/buttonShowPopUp"-->
+        <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:text="Show AlertDialog with ListView" />-->
+
+
+
+
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appBarLayout">
+        android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/main_app_bar"
-            layout="@layout/app_bar_layout"/>
+            android:id="@+id/main_page_toolbar"
+            layout="@layout/app_bar_layout" />
 
-        <!-- <android.support.design.widget.TabLayout
+        <android.support.design.widget.TabLayout
+            android:id="@+id/main_tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" /> -->
+            android:layout_height="wrap_content">
+
+        </android.support.design.widget.TabLayout>
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_tabPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appBarLayout" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
-
-
+    </android.support.v4.view.ViewPager>
 
 
 </RelativeLayout>

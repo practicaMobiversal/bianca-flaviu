@@ -9,4 +9,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contacts_list">Contacts list</string>
+    <string name="here_are_your_conversations">Here are your conversations</string>
+    <string name="welcome_to_requests_page">Welcome to requests page</string>
 </resources>

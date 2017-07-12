@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG="MainActivity";
     private Toolbar mToolbar;
     private ViewPager mViewPager;
-    private SectionsPagerAdapter mSectionsPagerAdapapter;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     private TabLayout mTabLayout;
 
     @Override
@@ -28,19 +29,19 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mToolbar = (Toolbar) findViewById(R.id.main_app_bar);
+
+        mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("BiaFla Talking");
 
-        //getSupportActionBar().setTitle("BFTalk");
+        //tabs
+          mViewPager = (ViewPager) findViewById(R.id.main_tabPager);
+          mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-//        mViewPager = (ViewPager) findViewById(R.id.main_tabPager);
-//        mSectionsPagerAdapapter = new SectionsPagerAdapter(getSupportFragmentManager());
-//
-//        mViewPager.setAdapter(mSectionsPagerAdapapter);
-//        mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
-//        mTabLayout.setupWithViewPager(mViewPager);
+          mViewPager.setAdapter(mSectionsPagerAdapter);
+
+         mTabLayout=(TabLayout) findViewById(R.id.main_tabs);
+         mTabLayout.setupWithViewPager(mViewPager);
     }
 
 

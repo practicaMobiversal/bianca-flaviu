@@ -20,10 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
         android:text="Log In"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_toolbar" />
+        tools:layout_editor_absoluteY="106dp" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/login_email"

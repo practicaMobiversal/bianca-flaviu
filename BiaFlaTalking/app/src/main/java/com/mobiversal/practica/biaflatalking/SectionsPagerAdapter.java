@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-/**
- * Created by Flaviu on 10/07/2017.
- */
 
 class SectionsPagerAdapter extends FragmentPagerAdapter {
     public SectionsPagerAdapter(FragmentManager fm) {
@@ -21,12 +18,12 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return requestsFragment;
 
             case 1:
-                ChatsFragment chatsFragment = new ChatsFragment();
-                return chatsFragment;
+                ConversationsFragment conversationsFragment = new ConversationsFragment();
+                return conversationsFragment;
 
             case 2:
-                FriendsFragment friendsFragment = new FriendsFragment();
-                return friendsFragment;
+                ContactsFragment contactsFragment = new ContactsFragment();
+                return contactsFragment;
 
             default:
                 return null;
@@ -36,6 +33,20 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
+
         return 3;
     }
+    public CharSequence getPageTitle(int position){
+        switch(position){
+            case 0:
+                return"REQUESTS";
+            case 1:
+                return"CONVERSATIONS";
+            case 2:
+                return"CONTACTS";
+            default:
+                return null;
+        }
+    }
+
 }
