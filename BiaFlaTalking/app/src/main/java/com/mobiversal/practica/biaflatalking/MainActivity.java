@@ -110,39 +110,16 @@ public class MainActivity extends AppCompatActivity {
             Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(startIntent);
             finish();
-            return true;
         }
-        if (item.getItemId() == R.id.main_settings_btn) {
+        else if (item.getItemId() == R.id.main_settings_btn) {
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
-
-            return true;
         }
-           return false;
-
-        if (item.getItemId() == R.id.chat_btn) {
-            Intent chatIntent = new Intent (MainActivity.this, ChatActivity.class);
+        else if (item.getItemId() == R.id.chat_btn) {
+            Intent chatIntent = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(chatIntent);
         }
 
         return true;
     }
-
-
-    //    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-    }
 }
-
