@@ -8,7 +8,7 @@
     tools:context="com.mobiversal.practica.biaflatalking.SettingsActivity">
 
 
-    <android.support.v4.widget.CircleImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/settings_image"
         android:layout_width="240dp"
         android:layout_height="185dp"
@@ -38,7 +38,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="19dp"
-        android:text="Hello! Welcome on BiaFlaTalking."
+        android:text="Hello! Welcome on BiaFla Talking."
         android:textSize="18sp"
         tools:ignore="HardcodedText" />
 
