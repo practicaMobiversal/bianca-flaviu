@@ -13,10 +13,11 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private static final String TAG="MainActivity";
+    private static final String TAG = "MainActivity";
     private Toolbar mToolbar;
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-         mTabLayout=(TabLayout) findViewById(R.id.main_tabs);
-         mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
 
 //        Intent newIntent = new Intent(MainActivity.this, ChatActivity.class);
 //        startActivity(newIntent);
@@ -63,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.main_menu, menu);
-            return true;
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
     @Override
     protected void onResume() {
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d (TAG, "onStop()");
+        Log.d(TAG, "onStop()");
     }
 
     @Override
@@ -101,16 +102,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
 
         if (item.getItemId() == R.id.main_logout_btn) {
             FirebaseAuth.getInstance().signOut();
             Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(startIntent);
             finish();
+            return true;
         }
+        if (item.getItemId() == R.id.main_settings_btn) {
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
 
-//        else
-//            super.onOptionsItemSelected(item);
+            return true;
+        }
+           return false;
 
         if (item.getItemId() == R.id.chat_btn) {
             Intent chatIntent = new Intent (MainActivity.this, ChatActivity.class);
@@ -135,4 +143,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
+    }
 }
+

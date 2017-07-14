@@ -7,6 +7,12 @@ tools:context="com.mobiversal.practica.life.MainActivity">
         android:title="Global chat room" />
     <item android:title="Settings" />
     <item
+        android:id="@+id/main_settings_btn"
+        android:title="Account Settings"
+        tools:ignore="HardcodedText" />
+    <item android:title="All Users"
+        tools:ignore="HardcodedText" />
+    <item
         android:id="@+id/main_logout_btn"
         android:title="@string/log_out"
         />
