@@ -38,7 +38,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="19dp"
-        android:text="Hello! Welcome on BiaFla Talking."
+        android:text="Hello! Welcome on BiaFlaTalking."
         android:textSize="18sp"
         tools:ignore="HardcodedText" />
 

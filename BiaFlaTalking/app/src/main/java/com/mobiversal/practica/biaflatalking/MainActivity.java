@@ -35,13 +35,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("BiaFla Talking");
 
         //tabs
-          mViewPager = (ViewPager) findViewById(R.id.main_tabPager);
-          mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.main_tabPager);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-          mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
          mTabLayout=(TabLayout) findViewById(R.id.main_tabs);
          mTabLayout.setupWithViewPager(mViewPager);
+
+//        Intent newIntent = new Intent(MainActivity.this, ChatActivity.class);
+//        startActivity(newIntent);
     }
 
 
@@ -106,11 +109,17 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        else
-            super.onOptionsItemSelected(item);
+//        else
+//            super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.chat_btn) {
+            Intent chatIntent = new Intent (MainActivity.this, ChatActivity.class);
+            startActivity(chatIntent);
+        }
 
         return true;
     }
+
 
     //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
