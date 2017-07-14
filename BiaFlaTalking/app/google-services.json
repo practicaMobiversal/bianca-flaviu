@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "914174443964-j604pv29v3fdc2hegped8ue202lsat8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobiversal.practica.biaflatalking",
+            "certificate_hash": "7ccc94d213cc871edf60b0cb8551bfb1f78dc6da"
+          }
+        },
+        {
           "client_id": "914174443964-ap2mf7behbghc2jmijcs9ote2p3cabm5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,6 +38,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyBAABuq3AlAojkgftAKV8Mabfofk_pfZvU"
+        },
+        {
+          "current_key": "AIzaSyBT6TNJTCws297bTrRpcruBvy1mQg8GUNs"
         }
       ],
       "services": {
