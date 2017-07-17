@@ -12,14 +12,14 @@
         android:id="@+id/settings_image"
         android:layout_width="240dp"
         android:layout_height="185dp"
-        android:layout_above="@+id/settings_status"
+        android:layout_above="@+id/settings_name"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:background="@color/colorPrimary"
         android:src="@drawable/default_avatar" />
 
     <TextView
-        android:id="@+id/settings_status"
+        android:id="@+id/settings_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -29,16 +29,16 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/settings_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_status"
+        android:layout_below="@+id/settings_name"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="19dp"
-        android:text="Hello! Welcome on BiaFla Talking."
+        android:text="@string/hello_welcome_on_biaflatalking"
         android:textSize="18sp"
         tools:ignore="HardcodedText" />
 

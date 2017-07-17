@@ -12,4 +12,6 @@
     <string name="contacts_list">Contacts list</string>
     <string name="here_are_your_conversations">Here are your conversations</string>
     <string name="welcome_to_requests_page">Welcome to requests page</string>
+    <string name="hello_welcome_on_biaflatalking">Hello! Welcome on BiaFla Talking.</string>
+    <string name="hint">Your status</string>
 </resources>
