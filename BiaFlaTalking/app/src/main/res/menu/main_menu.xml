@@ -5,7 +5,7 @@ tools:context="com.mobiversal.practica.life.MainActivity">
     <item
         android:id="@+id/chat_btn"
         android:title="Global chat room" />
-    <item android:title="Settings" />
+    
     <item
         android:id="@+id/main_settings_btn"
         android:title="Account Settings"

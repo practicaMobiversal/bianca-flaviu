@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -82,6 +83,8 @@ public class SettingsActivity extends AppCompatActivity {
 
                 mName.setText(name);
                 mStatus.setText(status);
+
+                Picasso.with(SettingsActivity.this).load(image).into(mDisplayImage);
 
 
             }
@@ -157,7 +160,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Uri resultUri = result.getUri();
                 String current_user_id=mCurrentUser.getUid();
 
-                StorageReference filepath = mImageStorage.child("profile_pictures").child(random()+".jpg");
+                StorageReference filepath = mImageStorage.child("profile_images").child(random()+".jpg");
 
 
                 filepath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -165,7 +168,19 @@ public class SettingsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(SettingsActivity.this, "Working", Toast.LENGTH_LONG).show();
+
+                            String download_url=task.getResult().getDownloadUrl().toString();
+                            mUserDatabase.child("image").setValue(download_url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if(task.isSuccessful()){
+                                        mProgressDialog.dismiss();
+                                        Toast.makeText(SettingsActivity.this,"Success uploading.",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+
                         } else {
                             Toast.makeText(SettingsActivity.this, "Error is uploading.", Toast.LENGTH_LONG).show();
                             mProgressDialog.dismiss();
