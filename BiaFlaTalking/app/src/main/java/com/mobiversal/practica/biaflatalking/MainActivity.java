@@ -120,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(chatIntent);
         }
 
+
+        if(item.getItemId()== R.id.main_all_btn) {
+            Intent usersIntent = new Intent(MainActivity.this, UsersActivity.class);
+            startActivity(usersIntent);
+        }
         return true;
     }
 }

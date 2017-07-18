@@ -11,6 +11,7 @@ tools:context="com.mobiversal.practica.life.MainActivity">
         android:title="Account Settings"
         tools:ignore="HardcodedText" />
     <item android:title="All Users"
+        android:id="@+id/main_all_btn"
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/main_logout_btn"
