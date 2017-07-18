@@ -1,5 +1,6 @@
 package com.mobiversal.practica.biaflatalking;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -49,6 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
     //Storage Firebase
 
     private StorageReference mImageStorage;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,9 +145,21 @@ public class SettingsActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
             if (resultCode == RESULT_OK) {
+
+
+                mProgressDialog=new ProgressDialog(SettingsActivity.this);
+                mProgressDialog.setTitle("Uploading Image...");
+                mProgressDialog.setMessage("Please wait while we upload and process the image.");
+                mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.show();
+
+
                 Uri resultUri = result.getUri();
+                String current_user_id=mCurrentUser.getUid();
 
                 StorageReference filepath = mImageStorage.child("profile_pictures").child(random()+".jpg");
+
+
                 filepath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -154,7 +168,9 @@ public class SettingsActivity extends AppCompatActivity {
                             Toast.makeText(SettingsActivity.this, "Working", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(SettingsActivity.this, "Error is uploading.", Toast.LENGTH_LONG).show();
+                            mProgressDialog.dismiss();
                         }
+
                     }
                 });
 
