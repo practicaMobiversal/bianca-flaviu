@@ -1,5 +1,7 @@
 package com.mobiversal.practica.biaflatalking;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +13,9 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UsersActivity extends AppCompatActivity {
@@ -55,8 +60,25 @@ public class UsersActivity extends AppCompatActivity {
 
       ) {
           @Override
-          protected void populateViewHolder(UsersViewHolder usersviewHolder, Users users, int i) {
-               usersviewHolder.setDisplayName(users.getName());
+          protected void populateViewHolder(UsersViewHolder usersviewHolder, Users users, int position) {
+
+              usersviewHolder.setDisplayName(users.getName());
+              usersviewHolder.setUserStatus(users.getStatus());
+              usersviewHolder.setUserImage(users.getThumb_image(),getApplicationContext());
+
+              final String user_id=getRef(position).getKey();
+
+              usersviewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View view) {
+
+                    Intent profileIntent=new Intent(UsersActivity.this,ProfileActivity.class);
+                      profileIntent.putExtra("user_id",user_id);
+                      startActivity(profileIntent);
+
+                  }
+              });
+
           }
       };
 
@@ -83,5 +105,13 @@ public class UsersActivity extends AppCompatActivity {
            TextView userStatusView=(TextView)mView.findViewById(R.id.user_single_status);
            userStatusView.setText(status);
        }
+
+       public void setUserImage(String thumb_image,Context ctx){
+           CircleImageView userImageView=(CircleImageView) mView.findViewById(R.id.user_single_image);
+
+           Picasso.with(ctx).load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
+
+       }
+
     }
 }

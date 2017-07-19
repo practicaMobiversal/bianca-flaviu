@@ -2,6 +2,7 @@ package com.mobiversal.practica.biaflatalking;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -28,9 +29,16 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
+
+import static android.R.attr.bitmap;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -84,8 +92,9 @@ public class SettingsActivity extends AppCompatActivity {
                 mName.setText(name);
                 mStatus.setText(status);
 
-                Picasso.with(SettingsActivity.this).load(image).into(mDisplayImage);
-
+//                if (image.equals("default")) {
+                    Picasso.with(SettingsActivity.this).load(image).placeholder(R.drawable.default_avatar).into(mDisplayImage);
+//                }
 
             }
             @Override
@@ -95,18 +104,18 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
 
-           mStatusBtn.setOnClickListener(new View.OnClickListener() {
+        mStatusBtn.setOnClickListener(new View.OnClickListener() {
 
-               @Override
-               public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 
-                   String status_value=mStatus.getText().toString();
-                   Intent status_intent=new Intent(SettingsActivity.this,StatusActivity.class);
-                   status_intent.putExtra("status_value",status_value);
-                   startActivity(status_intent);
+                String status_value=mStatus.getText().toString();
+                Intent status_intent=new Intent(SettingsActivity.this,StatusActivity.class);
+                status_intent.putExtra("status_value",status_value);
+                startActivity(status_intent);
 
-               }
-           });
+            }
+        });
 
         mImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,10 +167,26 @@ public class SettingsActivity extends AppCompatActivity {
 
 
                 Uri resultUri = result.getUri();
+
+                File thumb_filePath= new File(resultUri.getPath());
+
                 String current_user_id=mCurrentUser.getUid();
 
-                StorageReference filepath = mImageStorage.child("profile_images").child(random()+".jpg");
+                Bitmap thumb_bitmap = new Compressor(this)
+                        .setMaxWidth(200)
+                        .setMaxHeight(200)
+                        .setQuality(75)
+                        .compressToBitmap(thumb_filePath);
 
+                ByteArrayOutputStream baos=new ByteArrayOutputStream();
+                thumb_bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+                final byte[] thumb_byte =baos.toByteArray();
+
+
+
+
+                final StorageReference filepath = mImageStorage.child("profile_images").child(current_user_id + ".jpg");
+                final StorageReference thumb_filepath = mImageStorage.child("profile_images").child("thumbs").child(current_user_id + ".jpg");
 
                 filepath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -169,17 +194,45 @@ public class SettingsActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            String download_url=task.getResult().getDownloadUrl().toString();
-                            mUserDatabase.child("image").setValue(download_url).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                            final String download_url=task.getResult().getDownloadUrl().toString();
 
-                                    if(task.isSuccessful()){
+                            UploadTask uploadTask=thumb_filepath.putBytes(thumb_byte);
+                            uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> thumb_task) {
+
+                                    String thumb_downloadUrl=thumb_task.getResult().getDownloadUrl().toString();
+
+
+                                    if(thumb_task.isSuccessful()){
+
+                                        Map<String, Object> update_hashMap=new HashMap<>();
+                                        update_hashMap.put("image",download_url);
+                                        update_hashMap.put("thumb_image",thumb_downloadUrl);
+
+
+
+                                        mUserDatabase.updateChildren(update_hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                if(task.isSuccessful()){
+                                                    if (mProgressDialog != null)
+                                                        mProgressDialog.dismiss();
+                                                    Toast.makeText(SettingsActivity.this,"Success uploading.",Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
+                                    }  else {
+
+                                        Toast.makeText(SettingsActivity.this, "Error is uploading this thumbnail.", Toast.LENGTH_LONG).show();
                                         mProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this,"Success uploading.",Toast.LENGTH_LONG).show();
                                     }
+
                                 }
                             });
+
+
 
                         } else {
                             Toast.makeText(SettingsActivity.this, "Error is uploading.", Toast.LENGTH_LONG).show();
