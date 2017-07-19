@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mobiversal.practica.biaflatalking.ContactsFragment">
+    tools:context="com.mobiversal.practica.biaflatalking.ChatsFragment">
 
 
     <ListView
-        android:id="@+id/contacts_list"
+        android:id="@+id/conv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

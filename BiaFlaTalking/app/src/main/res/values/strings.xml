@@ -15,4 +15,6 @@
     <string name="hello_welcome_on_biaflatalking">Hello! Welcome on BiaFla Talking.</string>
     <string name="hint">Your status</string>
     <string name="total_friends">Total Friends</string>
+    <string name="decline_friend_request">Decline Friend Request</string>
+    <string name="log_in">Log In</string>
 </resources>

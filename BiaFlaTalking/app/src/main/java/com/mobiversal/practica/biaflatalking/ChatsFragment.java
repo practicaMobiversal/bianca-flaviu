@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 
 
 
-public class ContactsFragment extends Fragment {
+public class ChatsFragment extends Fragment {
 
 
-    public ContactsFragment() {
+    public ChatsFragment() {
         // Required empty public constructor
     }
 
@@ -21,7 +21,7 @@ public class ContactsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contacts, container, false);
+        return inflater.inflate(R.layout.fragment_chats, container, false);
     }
 
 }

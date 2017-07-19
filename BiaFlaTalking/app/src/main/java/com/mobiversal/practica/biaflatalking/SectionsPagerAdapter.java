@@ -18,12 +18,12 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return requestsFragment;
 
             case 1:
-                ConversationsFragment conversationsFragment = new ConversationsFragment();
-                return conversationsFragment;
+                ChatsFragment chatsFragment = new ChatsFragment();
+                return chatsFragment;
 
             case 2:
-                ContactsFragment contactsFragment = new ContactsFragment();
-                return contactsFragment;
+                FriendsFragment friendsFragment = new FriendsFragment();
+                return friendsFragment;
 
             default:
                 return null;
@@ -41,9 +41,9 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return"REQUESTS";
             case 1:
-                return"CONVERSATIONS";
+                return"CHATS";
             case 2:
-                return"CONTACTS";
+                return"FRIENDS";
             default:
                 return null;
         }

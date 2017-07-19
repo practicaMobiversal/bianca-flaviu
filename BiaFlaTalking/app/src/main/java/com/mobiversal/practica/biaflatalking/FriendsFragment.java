@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 
 
 
-public class ConversationsFragment extends Fragment {
+public class FriendsFragment extends Fragment {
 
 
-    public ConversationsFragment() {
+    public FriendsFragment() {
         // Required empty public constructor
     }
 
@@ -21,7 +21,7 @@ public class ConversationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_conversations, container, false);
+        return inflater.inflate(R.layout.fragment_friends, container, false);
     }
 
 }
