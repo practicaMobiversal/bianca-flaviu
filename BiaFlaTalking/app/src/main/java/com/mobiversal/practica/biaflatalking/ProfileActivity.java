@@ -97,18 +97,39 @@ public class ProfileActivity extends AppCompatActivity {
                             if (req_type.equals("received")) {  /* if the request is sent , it will be received by the other user */
 
 
-                                mCurrent_state="req_received";
+                                mCurrent_state = "req_received";
                                 mProfileSendReqBtn.setText("Accept Friend Request");
 
-                            }else if(req_type.equals("sent")){
-                                mCurrent_state="req_sent";
+                            } else if (req_type.equals("sent")) {
+                                mCurrent_state = "req_sent";
                                 mProfileSendReqBtn.setText("Cancel Friend Request");
 
-
-
                             }
+
+                            mProgressDialog.dismiss();
+                        }else{
+                            mFriendDatabase.child(mCurrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.hasChild(user_id)){
+
+
+                                        mCurrent_state = "friends";    /*for deleting friends */
+                                        mProfileSendReqBtn.setText("Unfriend this Person");
+                                    }
+
+                                    mProgressDialog.dismiss();
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    mProgressDialog.dismiss();
+                                }
+                            });
+
                         }
-                        mProgressDialog.dismiss();
+
 
                     }
 
@@ -165,6 +186,8 @@ public class ProfileActivity extends AppCompatActivity {
                                 Toast.makeText(ProfileActivity.this, "Failed Sending Request.", Toast.LENGTH_SHORT).show();
                             }
                             mProfileSendReqBtn.setEnabled(true);
+
+
                         }
                     });
 
