@@ -104,18 +104,13 @@ public class MainActivity extends AppCompatActivity {
             Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(startIntent);
             finish();
-        }
-        else if (item.getItemId() == R.id.main_settings_btn) {
+        } else if (item.getItemId() == R.id.main_settings_btn) {
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
         }
-        else if (item.getItemId() == R.id.chat_btn) {
-            Intent chatIntent = new Intent(MainActivity.this, ChatActivity.class);
-            startActivity(chatIntent);
-        }
 
 
-        if(item.getItemId()== R.id.main_all_btn) {
+        if (item.getItemId() == R.id.main_all_btn) {
             Intent usersIntent = new Intent(MainActivity.this, UsersActivity.class);
             startActivity(usersIntent);
         }
