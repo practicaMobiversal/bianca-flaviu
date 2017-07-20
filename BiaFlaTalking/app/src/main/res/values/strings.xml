@@ -17,4 +17,6 @@
     <string name="total_friends">Total Friends</string>
     <string name="decline_friend_request">Decline Friend Request</string>
     <string name="log_in">Log In</string>
+    <string name="email_">Email</string>
+    <string name="log_in_your_account">Log In your Account</string>
 </resources>

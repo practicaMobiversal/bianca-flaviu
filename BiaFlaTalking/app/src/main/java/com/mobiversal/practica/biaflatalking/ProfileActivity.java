@@ -28,6 +28,7 @@ import org.w3c.dom.Text;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -184,7 +185,7 @@ public class ProfileActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
 
-                                    mFriendReqDatabase.child(user_id).child(mCurrent_user.getUid()).child("request_type").setValue("received").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                mFriendReqDatabase.child(user_id).child(mCurrent_user.getUid()).child("request_type").setValue("received").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
 
@@ -210,7 +211,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         });
 
 
-                                      //  Toast.makeText(ProfileActivity.this, "Request Sent Successfully.", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(ProfileActivity.this, "Request Sent Successfully.", Toast.LENGTH_SHORT).show();
 
                                     }
                                 });
@@ -224,6 +225,16 @@ public class ProfileActivity extends AppCompatActivity {
 
                         }
                     });
+
+
+
+
+
+
+
+
+
+
 
 
                 }
@@ -261,6 +272,19 @@ public class ProfileActivity extends AppCompatActivity {
                     if(mCurrent_state.equals("req_received")){
 
                         final String currentDate= DateFormat.getDateTimeInstance().format(new Date());
+
+
+
+                        Map friendsMap=new HashMap();
+                        friendsMap.put("Friends/"+ mCurrent_user.getUid() + "/" +user_id + "/date" , currentDate);
+                        friendsMap.put("Friends/"+ user_id + "/" + mCurrent_user.getUid() + "/date" , currentDate);
+
+                        friendsMap.put("Friends_req/"+ mCurrent_user.getUid() + "/" +user_id ,null);
+                        friendsMap.put("Friends_req/"+ user_id + "/" + mCurrent_user.getUid() ,null);
+
+
+
+
                         mFriendDatabase.child(mCurrent_user.getUid()).child(user_id).setValue(currentDate).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
