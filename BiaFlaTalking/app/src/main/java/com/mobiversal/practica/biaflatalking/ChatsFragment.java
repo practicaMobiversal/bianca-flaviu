@@ -25,6 +25,7 @@ public class ChatsFragment extends Fragment {
     private DatabaseReference dbRef;
     FloatingActionButton fab;
     public View mMyView;
+    public ListView listOfMessage;
 
 
     public ChatsFragment() {
@@ -46,14 +47,17 @@ public class ChatsFragment extends Fragment {
                 FirebaseDatabase.getInstance().getReference().child("group").push().setValue(new ChatMessage(input.getText().toString(),
                         FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 input.setText("");
-                displayChatMessage();
+                listOfMessage.smoothScrollToPosition(adapter.getCount()-1);
+
             }
         });
+        displayChatMessage();
         return mMyView;
+
     }
 
     private void displayChatMessage() {
-        final ListView listOfMessage = (ListView) mMyView.findViewById(R.id.list_of_message);
+        listOfMessage = (ListView) mMyView.findViewById(R.id.list_of_message);
         adapter = new FirebaseListAdapter<ChatMessage>((Activity) getContext(), ChatMessage.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference().child("group")) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
